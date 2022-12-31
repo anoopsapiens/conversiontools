@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hex to Days Converter</title>
+</head>
+<body>
+  <h1>Hex to Days Converter</h1>
+  <!-- Input field for the hex value -->
+  <label for="hex-input">Enter hex value:</label><br>
+  <input type="text" id="hex-input"><br><br>
+  <!-- Button to trigger the conversion -->
+  <button onclick="convert()">Convert</button>
+  <!-- Display the result of the conversion -->
+  <p id="result"></p>
+
+  <script>
+    function convert() {
+      // Get the hex value from the input field
+      const hexValue = document.getElementById('hex-input').value;
+      
+      // Convert the hex value to a binary string
+      const binaryStr = parseInt(hexValue, 16).toString(2);
+
+      // Days of the week
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      
+      // Array to store the selected days
+      const daysSelected = [];
+
+      // For each binary digit in the string, if it is 1 then add the corresponding day to the list
+      for (let i = 0; i < binaryStr.length; i++) {
+        if (binaryStr[i] === '1') {
+          daysSelected.push(days[i]);
+        }
+      }
+
+      // Display the result
+      document.getElementById('result').innerHTML = `Selected days: ${daysSelected.join(', ')}`;
+    }
+  </script>
+</body>
+</html>
