@@ -1,0 +1,36 @@
+<form id="curl-form">
+    <label for="method">HTTP Method:</label><br>
+    <input type="text" id="method" name="method"><br>
+    <label for="url">URL:</label><br>
+    <input type="text" id="url" name="url"><br>
+    <label for="headers">Headers:</label><br>
+    <textarea id="headers" name="headers"></textarea><br>
+    <label for="data">Data:</label><br>
+    <textarea id="data" name="data"></textarea><br>
+    <input type="button" value="Generate CURL Command" onclick="generateCurlCommand()">
+</form>
+
+<p>CURL Command:</p>
+<pre id="curl-command"></pre>
+<div class="footer">anoopsapien@gmail.com</div>
+
+<script>
+    function generateCurlCommand() {
+        var method = document.getElementById("method").value;
+        var url = document.getElementById("url").value;
+        var headers = document.getElementById("headers").value;
+        var data = document.getElementById("data").value;
+
+        var curlCommand = "curl -X " + method + " " + url;
+
+        if (headers) {
+            curlCommand += " -H '" + headers.replace(/\n/g, "\\n") + "'";
+        }
+
+        if (data) {
+            curlCommand += " -d '" + data + "'";
+        }
+
+        document.getElementById("curl-command").innerText = curlCommand;
+    }
+</script>
